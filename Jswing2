@@ -1,0 +1,53 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener; 
+import javax.swing.*;
+
+public class slideCalculator {
+JButton add,subtract;
+JSlider num1st,num2nd;
+JLabel answer;
+public slideCalculator(){
+    JFrame calc = new JFrame("Mediocre Calculator");
+    num1st = new JSlider (0, 100, 0);
+    num1st.setMajorTickSpacing (10);
+    num1st.setMinorTickSpacing (5);
+    num2nd = new JSlider (0, 100, 0);
+    num2nd.setMajorTickSpacing (10);
+    num2nd.setMinorTickSpacing (5);
+    add = new JButton("+");
+    subtract = new JButton("-");
+    answer = new JLabel("");
+    calc.setDefaultCloseOperation(calc.EXIT_ON_CLOSE);
+    calc.setVisible(true);
+    calc.setBounds(500, 200, 290, 210);
+    calc.setLayout(new GridLayout(0,2,1,1));
+    calc.add(new JLabel("First Number: "));
+    calc.add(num1st);
+    calc.add(new JLabel("Second Number: "));
+    calc.add(num2nd);
+    calc.add(new JLabel("Answer: "));
+    calc.add(answer);
+    calc.add(add);
+    calc.add(subtract);
+    add.addActionListener(new action());
+    subtract.addActionListener(new action());
+
+}
+public static void main(String[] args) {
+    slideCalculator lc = new slideCalculator();
+}
+public class action implements ActionListener {
+    public void actionPerformed(ActionEvent ae) {
+        int firstNum = Integer.parseInt(num1st.getValue());
+        int secondNum = Integer.parseInt(num2nd.getValue());
+        if(ae.getValue()== add){
+            answer.setText(String.valueOf(firstNum+secondNum));
+        }
+        else if (ae.getValue()==subtract){
+            answer.setText(String.valueOf(firstNum-secondNum));
+        }
+        } 
+
+}
+}
